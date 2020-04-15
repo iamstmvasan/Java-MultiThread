@@ -17,10 +17,10 @@ class Producer extends Thread{
 	public void run(){
 		int i = 1;
 		try{
-			while(true){
-				s.put(i++);
-				Thread.sleep(300);			
-			}
+		    while(true){
+			s.put(i++);
+			Thread.sleep(300);			
+		    }
 		}catch(InterruptedException ie){}
 	}
 }
@@ -31,10 +31,10 @@ class Consumer extends Thread{
 	}
 	public void run(){
 		try{
-			while(true){
-					System.out.println("Consumer : "+s.get());
-					Thread.sleep(500);
-				}
+		    while(true){
+			System.out.println("Consumer : "+s.get());
+			Thread.sleep(500);
+		    }
 		}catch(InterruptedException ie){}
 	}
 }
