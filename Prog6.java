@@ -4,23 +4,22 @@ class Shop{
 	boolean f = false;
 	synchronized void put(int product){
 		try{
-			if(f == true){
-				wait();
-			}
-			this.product = product;
-			System.out.println("Producer : "+product);
-			f = true;
-			notify();
+		    if(f == true){
+			wait();
+		    }
+		this.product = product;
+		System.out.println("Producer : "+product);
+		f = true;
+		notify();
 		}catch(InterruptedException ie){}
 	}
 	synchronized int get(){
 		try{
-			if(f == false){
-				wait();
-			}
-			f = false;
-			notify();
-			
+		    if(f == false){
+			wait();
+		    }
+		    f = false;
+		    notify();
 		}catch(InterruptedException ie){}
 		return product;	
 	}
@@ -33,10 +32,10 @@ class Producer extends Thread{
 	public void run(){
 		int i = 1;
 		try{
-			while(true){
-				s.put(i++);
-				Thread.sleep(500);
-			}
+		    while(true){
+			    s.put(i++);
+			    Thread.sleep(500);
+		    }
 		}catch(InterruptedException ie){}
 	}
 }
@@ -47,10 +46,10 @@ class Consumer extends Thread{
 	}
 	public void run(){
 		try{
-			while(true){
-				System.out.println("Consumer : "+s.get());
-				Thread.sleep(500);			
-			}
+		    while(true){
+			System.out.println("Consumer : "+s.get());
+			Thread.sleep(500);			
+		    }
 		}catch(InterruptedException ie){}
 	}
 }
